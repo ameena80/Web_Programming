@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Year Calendar</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f2f2f2;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #calendar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .month {
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px #aaa;
+        }
+
+        .month h2 {
+            color: #0077cc;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 6px;
+            text-align: center;
+        }
+
+        th {
+            color: #e63946;
+        }
+
+        td {
+            border: 1px solid #eee;
+        }
+
+        @media(max-width: 700px) {
+            #calendar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width: 450px) {
+            #calendar {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Year Calendar Generator</h1>
+
+    <div id="calendar"></div>
+
+    <script>
+        // Get year from user
+        let year = prompt("Enter the year :");
+
+        year = Number(year);
+
+        // Validate year
+        if (
+            !Number.isInteger(year) ||
+            year < 1000 ||
+            year > 9999
+        ) {
+            alert("Please enter a valid year between 1000 and 9999!");
+        } else {
+
+            const months = [
+                "January", "February", "March",
+                "April", "May", "June",
+                "July", "August", "September",
+                "October", "November", "December"
+            ];
+
+            const days = [
+                "Sun", "Mon", "Tue", "Wed",
+                "Thu", "Fri", "Sat"
+            ];
+
+            const calendar = document.getElementById("calendar");
+
+            // Generate all 12 months
+            for (let month = 0; month < 12; month++) {
+
+                let firstDay = new Date(year, month, 1).getDay();
+
+                let totalDays = new Date(
+                    year, month + 1, 0
+                ).getDate();
+
+                let html = `
+                    <div class="month">
+                    <h2>${months[month]} ${year}</h2>
+                    <table>
+                    <tr>
+                `;
+
+                // Display weekdays
+                days.forEach(day => {
+                    html += `<th>${day}</th>`;
+                });
+
+                html += "</tr><tr>";
+
+                // Empty cells before first day
+                for (let i = 0; i < firstDay; i++) {
+                    html += "<td></td>";
+                }
+
+                // Display dates
+                for (let date = 1; date <= totalDays; date++) {
+
+                    html += `<td>${date}</td>`;
+
+                    if ((firstDay + date) % 7 === 0) {
+                        html += "</tr><tr>";
+                    }
+                }
+
+                html += `
+                    </tr>
+                    </table>
+                    </div>
+                `;
+
+                calendar.innerHTML += html;
+            }
+        }
+    </script>
+
+</body>
+</html>
+
