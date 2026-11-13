@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Background Color Changer</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button type="button" onclick="colorchange()">
+        Change Background Color
+    </button>
+
+    <script>
+
+        var color = [
+            "blue",
+            "red",
+            "yellow",
+            "green",
+            "skyblue",
+            "black"
+        ];
+
+        var l = color.length;
+        var i = 0;
+
+        function colorchange() {
+
+            document.body.style.backgroundColor = color[i];
+
+            i = (i + 1) % l;
+
+        }
+
+    </script>
+
+</body>
+</html>
+
