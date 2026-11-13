@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mouse Over</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: lightblue;
+            font-family: Arial;
+        }
+
+        h1 {
+            color: darkblue;
+        }
+
+        img {
+            border: 3px solid white;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="text">Hello</h1>
+
+    <img src="/home/user/user/Pictures/bg.jpg"
+         onmouseover="onmouse()"
+         onmouseout="outmouse()"
+         id="image"
+         width="300">
+
+    <script>
+        function onmouse() {
+            document.getElementById('text').innerText =
+                'Welcome to my page';
+
+            document.getElementById('image').src =
+                '/home/user/user/Pictures/bg.jpg';
+        }
+
+        function outmouse() {
+            document.getElementById('text').innerText =
+                'Hello World';
+
+            document.getElementById('image').src =
+                '/home/user/user/Pictures/bg1.jpg';
+        }
+    </script>
+
+</body>
+</html>
+
